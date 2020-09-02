@@ -26,16 +26,18 @@ app.get("/tables", function(req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
   });
 //sets default to home page 
-app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
-  });
+// app.get("*", function(req, res) {
+//     res.sendFile(path.join(__dirname, "index.html"));
+//   });
 
 // API Routes
 // =============================================================
   
   // Displays all tables
 app.get("/api/tables", function(req, res) {
-    return res.json(tables);
+  console.log("/api/tables")  
+  res.json(tables);
+    
   });
 
 app.post("/api/new", function(req, res) {
