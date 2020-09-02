@@ -10,12 +10,12 @@ app.use(express.json());
 
 
 var tables = [];
-// Routes
+// HTML Routes
 // =============================================================
 
 // gets home page
 app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "home.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
   });
   // gets reserve page
 app.get("/reserve", function(req, res) {
@@ -25,12 +25,30 @@ app.get("/reserve", function(req, res) {
 app.get("/viewtables", function(req, res) {
     res.sendFile(path.join(__dirname, "viewtables.html"));
   });
+//sets default to home page 
+app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
+  });
+
+// API Routes
+// =============================================================
   
   // Displays all tables
 app.get("/api/tables", function(req, res) {
     return res.json(tables);
   });
 
+app.post("/api/tables", function(req, res) {
+   
+    var newReservation = req.body;
+    newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
+
+    console.log(newReservation);
+  
+    tables.push(newReservation);
+  
+    res.json(newReservation);
+  });
 
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
