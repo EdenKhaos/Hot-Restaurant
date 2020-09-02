@@ -18,12 +18,12 @@ app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
   });
   // gets reserve page
-app.get("/reserve", function(req, res) {
-    res.sendFile(path.join(__dirname, "reserve.html"));
+app.get("/reservation", function(req, res) {
+    res.sendFile(path.join(__dirname, "reservation.html"));
   });
 // gets view page
-app.get("/viewtables", function(req, res) {
-    res.sendFile(path.join(__dirname, "viewtables.html"));
+app.get("/tables", function(req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
   });
 //sets default to home page 
 app.get("*", function(req, res) {
