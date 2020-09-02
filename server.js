@@ -18,7 +18,7 @@ app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
   });
   // gets reserve page
-app.get("/reservation", function(req, res) {
+app.get("/reserve", function(req, res) {
     res.sendFile(path.join(__dirname, "reservation.html"));
   });
 // gets view page
@@ -38,19 +38,19 @@ app.get("/api/tables", function(req, res) {
     return res.json(tables);
   });
 
-app.post("/api/tables", function(req, res) {
+app.post("/api/new", function(req, res) {
    
     var newReservation = req.body;
-    newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
+    newReservation.routeName = newReservation.customerName.replace(/\s+/g, "").toLowerCase();
 
     console.log(newReservation);
   
     tables.push(newReservation);
   
     res.json(newReservation);
-  });
+});
 
-  app.listen(PORT, function() {
+app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
   
