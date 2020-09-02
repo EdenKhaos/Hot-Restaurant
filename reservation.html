@@ -90,6 +90,31 @@
 		};
 
 		console.log(newReservation);
+
 		var currentURL = window.location.origin;
+
+		$.post(currentURL + "/api/new", newReservation,
+  	    function(data) {
+
+			// If a table is available tell them they have a reservation
+			if(data === true){
+  	    		alert("Yay! You are officially booked!")
+			}
+
+			// If a table is unavailable tell them they are on the waitlist
+  	    	if(data === false){
+  	    		alert("Sorry you are on the waitlist")
+			  }
+		});	  
+			  
+		$('#reserve_name').val("");
+  			$('#reserve_phone').val("");
+  			$('#reserve_email').val("");
+  			$('#reserve_uniqueID').val("");
+        $('#reserve_party').val().trim()
+
+  return false;
+
+});
 
 </script>
